@@ -7,7 +7,7 @@ import numpy as np
 
 class TestMirror(unittest.TestCase):
     """
-        Тесты на отражение по вертикали и горизонтали
+    Тесты на отражение по вертикали и горизонтали
     """
     def test_mirror_x_3x3(self):
         input_arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -28,6 +28,16 @@ class TestMirror(unittest.TestCase):
 
     def test_random_mirror_y_7x7(self):
         input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
+        output_arr = np.ndarray.tolist(np.flipud(input_arr))
+        self.assertEqual(output_arr, _mirror_y(input_arr))
+
+    def test_random_mirror_x_7x8(self):
+        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
+        output_arr = np.ndarray.tolist(np.fliplr(input_arr))
+        self.assertEqual(output_arr, _mirror_x(input_arr))
+
+    def test_random_mirror_y_7x8(self):
+        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
         output_arr = np.ndarray.tolist(np.flipud(input_arr))
         self.assertEqual(output_arr, _mirror_y(input_arr))
 
