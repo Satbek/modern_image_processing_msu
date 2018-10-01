@@ -1,6 +1,7 @@
 import unittest
 import sys
 sys.path.append('../src')
+from util.test import tolist
 import matplotlib.pyplot as plt
 import numpy as np
 import shutil, glob, os

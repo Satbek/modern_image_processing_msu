@@ -3,6 +3,7 @@ import sys
 sys.path.append('../src')
 from transform.rotate import _rot90_cw, _rot90_ccw, rot
 import numpy as np
+from util.test import tolist
 
 
 class TestRotate(unittest.TestCase):
@@ -22,38 +23,38 @@ class TestRotate(unittest.TestCase):
         self.assertEqual(output_arr, _rot90_ccw(input_arr))
 
     def test__rot90_cw_7x7(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
-        output_arr = np.ndarray.tolist(np.rot90(input_arr, -1))
+        input_arr = tolist(np.random.uniform(1,10,(7,7)))
+        output_arr = tolist(np.rot90(input_arr, -1))
         self.assertEqual(output_arr, _rot90_cw(input_arr))
 
     def test_rot90_ccw_7x7(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
-        output_arr = np.ndarray.tolist(np.rot90(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,7)))
+        output_arr = tolist(np.rot90(input_arr))
         self.assertEqual(output_arr, _rot90_ccw(input_arr))
 
     def test_rot90_cw_7x8(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
-        output_arr = np.ndarray.tolist(np.rot90(input_arr, -1))
+        input_arr = tolist(np.random.uniform(1,10,(7,8)))
+        output_arr = tolist(np.rot90(input_arr, -1))
         self.assertEqual(output_arr, _rot90_cw(input_arr))
 
     def test_rot90_ccw_7x8(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
-        output_arr = np.ndarray.tolist(np.rot90(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,8)))
+        output_arr = tolist(np.rot90(input_arr))
         self.assertEqual(output_arr, _rot90_ccw(input_arr))
 
     def test_rot90_positive_degree(self):
         degrees = [90, 180, 270]
-        input_arr = np.ndarray.tolist(np.random.randint(1,10,(7,8)))
+        input_arr = tolist(np.random.randint(1,10,(7,8)))
         for i, num in enumerate([-1,-2,-3]):
-            output_arr = np.ndarray.tolist(np.rot90(input_arr, num))
+            output_arr = tolist(np.rot90(input_arr, num))
             #degrees[i] == num * (-90)
         self.assertEqual(output_arr, rot(input_arr, degrees[i]))
 
     def test_rot90_negative_degree(self):
         degrees = [-90, -180, -270]
-        input_arr = np.ndarray.tolist(np.random.randint(1,10,(7,8)))
+        input_arr = tolist(np.random.randint(1,10,(7,8)))
         for i, num in enumerate([1,2,3]):
-            output_arr = np.ndarray.tolist(np.rot90(input_arr, num))
+            output_arr = tolist(np.rot90(input_arr, num))
             #degrees[i] == num *(-90)
         self.assertEqual(output_arr, rot(input_arr, degrees[i]))
 

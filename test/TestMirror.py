@@ -1,6 +1,7 @@
 import unittest
 import sys
 sys.path.append('../src')
+from util.test import tolist
 from transform.mirror import mirror, _mirror_x, _mirror_y
 import numpy as np
 
@@ -22,23 +23,23 @@ class TestMirror(unittest.TestCase):
         self.assertEqual(output_arr, _mirror_y(input_arr))
 
     def test_random_mirror_x_7x7(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
-        output_arr = np.ndarray.tolist(np.fliplr(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,7)))
+        output_arr = tolist(np.fliplr(input_arr))
         self.assertEqual(output_arr, _mirror_x(input_arr))
 
     def test_random_mirror_y_7x7(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
-        output_arr = np.ndarray.tolist(np.flipud(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,7)))
+        output_arr = tolist(np.flipud(input_arr))
         self.assertEqual(output_arr, _mirror_y(input_arr))
 
     def test_random_mirror_x_7x8(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
-        output_arr = np.ndarray.tolist(np.fliplr(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,8)))
+        output_arr = tolist(np.fliplr(input_arr))
         self.assertEqual(output_arr, _mirror_x(input_arr))
 
     def test_random_mirror_y_7x8(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,8)))
-        output_arr = np.ndarray.tolist(np.flipud(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,8)))
+        output_arr = tolist(np.flipud(input_arr))
         self.assertEqual(output_arr, _mirror_y(input_arr))
 
     def test_empty_array(self):
@@ -50,10 +51,10 @@ class TestMirror(unittest.TestCase):
         self.assertEqual(output_arr, mirror(input_arr, 'y'))
 
     def test_mirror(self):
-        input_arr = np.ndarray.tolist(np.random.uniform(1,10,(7,7)))
-        output_arr_y = np.ndarray.tolist(np.flipud(input_arr))
+        input_arr = tolist(np.random.uniform(1,10,(7,7)))
+        output_arr_y = tolist(np.flipud(input_arr))
         self.assertEqual(output_arr_y, mirror(input_arr, 'y'))
-        output_arr_x = np.ndarray.tolist(np.fliplr(input_arr))
+        output_arr_x = tolist(np.fliplr(input_arr))
         self.assertEqual(output_arr_x, mirror(input_arr, 'x'))
 
 
