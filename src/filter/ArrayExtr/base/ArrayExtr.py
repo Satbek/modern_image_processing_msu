@@ -6,7 +6,7 @@ class ArrayExtr:
         """
         array: экстраполируемый массив
         """
-        self._body = array
+        self._body = array[:]
 
     @property
     def body(self):

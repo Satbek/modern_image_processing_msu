@@ -9,7 +9,7 @@ class TestArrayRepExtr(unittest.TestCase):
     при экстраполяции
     """
     def setUp(self):
-        self.array = ArrayRepExtr([1,2,3,4,5])
+        self.array = ArrayRepExtr([1,2,3,4,5,6])
 
     def test_create(self):
         self.assertIsInstance(self.array, ArrayRepExtr)
@@ -28,6 +28,20 @@ class TestArrayRepExtr(unittest.TestCase):
 
     def test_right(self):
         self.assertEqual(self.array[60], self.array.body[-1])
+
+    def test_right2(self):
+        self.assertEqual(self.array[len(self.array)], self.array[len(self.array) + 1])
+
+    def test_right3(self):
+        self.assertEqual(self.array[6], self.array.body[-1])
+
+    def test_inner(self):
+        for i in range(len(self.array)):
+            self.assertEqual(self.array[i], self.array.body[i])
+
+    def test_inner_right(self):
+        for i in range(len(self.array), 10 * len(self.array)):
+            self.assertEqual(self.array[i], self.array.body[-1])
 
     def test_is_extrapolation_for(self):
         self.assertTrue(ArrayRepExtr.is_extrapolation_for('Rep'))
