@@ -21,7 +21,7 @@ class TestArrayRepExtr(unittest.TestCase):
         self.assertEqual(self.array[0], self.array[-1])
 
     def test_border_right_get(self):
-        self.assertEqual(self.array[len(self.array.body)], self.array[len(self.array.body) - 1])
+        self.assertEqual(self.array[len(self.array)], self.array[len(self.array) - 1])
 
     def test_left(self):
         self.assertEqual(self.array[-2], self.array[0])

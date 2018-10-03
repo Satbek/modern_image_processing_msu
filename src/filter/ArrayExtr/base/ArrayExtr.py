@@ -15,6 +15,9 @@ class ArrayExtr:
     def __getitem__(self, key):
         raise RuntimeError("Not implemented")
 
+    def __len__(self):
+        return len(self.body)
+
 def GetArrayExtr(array, type_):
     """
     Возвращает нужный класс для экстраполяции.

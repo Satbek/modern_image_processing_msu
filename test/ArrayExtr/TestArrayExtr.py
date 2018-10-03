@@ -19,5 +19,8 @@ class TestArrayExtr(unittest.TestCase):
         the_exception = cm.exception
         self.assertIsInstance(the_exception, RuntimeError)
 
+    def test_len(self):
+        self.assertEqual(len(self.array), len(self.array.body))
+
 if __name__ == '__main__':
     unittest.main()
