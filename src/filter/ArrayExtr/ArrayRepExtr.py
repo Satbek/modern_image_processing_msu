@@ -15,6 +15,4 @@ class ArrayRepExtr(ArrayExtr):
         elif key < 0:
             return self.body[0]
         elif key >= len(self.body):
-            #почему так нельзя?
             return self.body[-1]
-            #return self.body[len(self.body) - 1]
