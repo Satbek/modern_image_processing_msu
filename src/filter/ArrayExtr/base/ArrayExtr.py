@@ -21,11 +21,15 @@ class ArrayExtr:
 def GetArrayExtr(array, type_):
     """
     Возвращает нужный класс для экстраполяции.
-    array: экстраполируемый массив
+    array: экстраполируемый массив (одномерный или двумерны массив)
     type_: тип экстраполяции
     result: экземпляр класса для экстраполяции
     """
     for cls in ArrayExtr.__subclasses__():
         if cls.is_extrapolation_for(type_):
-            return cls(array)
+            result = cls(array)
+            if type(array[0]) is list:
+                for row in array:
+                    row[:] = cls(row)
+            return result
     raise ValueError("Unsupported extrapolation type : " + type_)
