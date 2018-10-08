@@ -17,3 +17,6 @@ class TestGetArrayExtr(unittest.TestCase):
             obj = GetArrayExtr([1,2,3,4,5], 'unsupported type')
         the_exception = cm.exception
         self.assertIsInstance(the_exception, ValueError)
+
+if __name__ == '__main__':
+    unittest.main()

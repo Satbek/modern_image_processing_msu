@@ -24,6 +24,7 @@ class TestArrayOddExtr(unittest.TestCase):
 
     def test_left(self):
         self.assertEqual(self.array[-2], self.array[1])
+        self.assertEqual(self.array[-3], self.array[2])
 
     def test_right(self):
         self.assertEqual(self.array[6], self.array[3])
