@@ -3,6 +3,7 @@ import sys
 sys.path.append('../../src')
 from filter.ArrayExtr.base.ArrayExtr import ArrayExtr, GetArrayExtr
 from filter.ArrayExtr.ArrayOddExtr import ArrayOddExtr
+from filter.ArrayExtr.ArrayConstantExtr import ArrayConstantExtr
 
 class TestGetArrayExtr(unittest.TestCase):
     """
@@ -11,6 +12,10 @@ class TestGetArrayExtr(unittest.TestCase):
     def test_ArrayOddExtr(self):
         obj = GetArrayExtr([1,2,3,4,5], 'odd')
         self.assertIsInstance(obj, ArrayOddExtr)
+
+    def test_ArrayConstantExtr(self):
+        obj = GetArrayExtr([1,2,3,4,5], 'constant', constant = 1)
+        self.assertIsInstance(obj, ArrayConstantExtr)
 
     def test_unsupported_type(self):
         with self.assertRaises(ValueError) as cm:
