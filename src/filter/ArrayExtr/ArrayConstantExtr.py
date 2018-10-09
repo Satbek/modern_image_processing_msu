@@ -3,7 +3,7 @@ class ArrayConstantExtr(ArrayExtr):
     """
     Класс для инициализации константой граничных пикслелей
     при экстраполяции
-    1 1 1 | 1 2 3 | 3 3 3
+    const const const | 1 2 3 | const const const
     """
     def __init__(self, array, constant):
         self.constant = constant
@@ -15,8 +15,17 @@ class ArrayConstantExtr(ArrayExtr):
 
     def __getitem__(self, key):
         if key >= 0 and key < len(self.body):
-            return self.body[key]
+            if len(self.shape) == 1:
+                return self.body[key]
+            else:
+                return ArrayConstantExtr(self.body[key], self.constant)
         elif key < 0:
-            return self.constant
+            if len(self.shape) == 1:
+                return self.constant
+            else:
+                return ArrayConstantExtr([self.constant] * self.shape[1], self.constant)
         elif key >= len(self.body):
-            return self.constant
+            if len(self.shape) == 1:
+                return self.constant
+            else:
+                return ArrayConstantExtr([self.constant] * self.shape[1], self.constant)

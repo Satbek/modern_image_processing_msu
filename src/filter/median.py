@@ -1,0 +1,26 @@
+from filter.ArrayExtr.base.ArrayExtr import GetArrayExtr
+from filter.ArrayExtr.ArrayConstantExtr import ArrayConstantExtr
+
+def median(array, rad):
+    """
+    Медианная фильтрация, параметр rad — целочисленный радиус фильтра,
+    то есть размер фильтра — квадрат со стороной (2 * rad + 1)
+    array: двумерный массив
+    rad: число
+    result: двумерный массив
+    """
+    array = GetArrayExtr(array,'constant', 0)
+    row_len, col_len = len(array), len(array[0])
+    result = []
+    for i in range(row_len):
+        result.append([])
+        for j in range(col_len):
+            median_arr = []
+            for l in range(i - rad, i + rad + 1):
+                for m in range(j - rad, j + rad + 1):
+                    median_arr.append(array[l][m])
+            median_arr[:] = sorted(median_arr)
+            #print("median arr[{}],[{}]".format(i,j),median_arr)
+            result[i].append(median_arr[len(median_arr) // 2])
+    return result
+

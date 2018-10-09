@@ -9,6 +9,18 @@ class ArrayExtr:
         self._body = array[:]
 
     @property
+    def shape(self):
+        """
+        Получить размерность массива
+        array: одномерный или двумерный массив
+        result: (dim1) or (dim1, dim2)
+        """
+        if type(self.body[0]) is list:
+            return (len(self.body), len(self.body[0]))
+        return (len(self.body),)
+    
+
+    @property
     def body(self):
         return self._body
     
@@ -29,8 +41,5 @@ def GetArrayExtr(array, type_, *args, **kwargs):
     for cls in ArrayExtr.__subclasses__():
         if cls.is_extrapolation_for(type_):
             result = cls(array, *args, **kwargs)
-            if type(array[0]) is list:
-                for row in array:
-                    row[:] = cls(row, *args, **kwargs)
             return result
     raise ValueError("Unsupported extrapolation type : " + type_)
