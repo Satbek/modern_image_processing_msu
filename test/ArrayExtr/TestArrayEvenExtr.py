@@ -10,6 +10,9 @@ class TestArrayEvenExtr(unittest.TestCase):
     def setUp(self):
     	#-4 -3 -2 -1 0 1 | 1 2 3 4 5 | 5 6 7 8 9
         self.array = ArrayEvenExtr([1,2,3,4,5])
+        self.array2d = ArrayEvenExtr([  [1,2,3],
+                                        [4,5,6],
+                                        [7,8,9]])
 
     def test_create(self):
         self.assertIsInstance(self.array, ArrayEvenExtr)
@@ -34,6 +37,54 @@ class TestArrayEvenExtr(unittest.TestCase):
             self.array[20]
         the_exception = cm.exception
         self.assertIsInstance(the_exception, IndexError)
+
+    def test_inner2d(self):
+        self.assertEqual(self.array2d[0][0], 1)
+        self.assertEqual(self.array2d[1][1], 5)
+
+    def test_right2d(self):
+        self.assertEqual(self.array2d[0][3], 3)
+        self.assertEqual(self.array2d[0][4], 4)
+        self.assertEqual(self.array2d[0][5], 5)
+        self.assertEqual(self.array2d[1][3], 6)
+        self.assertEqual(self.array2d[1][4], 7)
+        self.assertEqual(self.array2d[1][5], 8)
+
+    def test_left2d(self):
+        self.assertEqual(self.array2d[0][-1], 1)
+        self.assertEqual(self.array2d[0][-2], 0)
+        self.assertEqual(self.array2d[0][-3], -1)
+        self.assertEqual(self.array2d[1][-1], 4)
+        self.assertEqual(self.array2d[1][-2], 3)
+        self.assertEqual(self.array2d[1][-3], 2)
+
+    def test_up2d(self):
+        self.assertEqual(self.array2d[-1][0], 1)
+        self.assertEqual(self.array2d[-1][1], 2)
+        self.assertEqual(self.array2d[-1][2], 3)
+        self.assertEqual(self.array2d[-2][0], -2)
+        self.assertEqual(self.array2d[-2][1], -1)
+        self.assertEqual(self.array2d[-2][2], 0)
+        self.assertEqual(self.array2d[-2][-1], -2)
+        self.assertEqual(self.array2d[-2][-2], -3)
+        self.assertEqual(self.array2d[-2][-3], -4)
+        self.assertEqual(self.array2d[-2][3], 0)
+        self.assertEqual(self.array2d[-2][4], 1)
+        self.assertEqual(self.array2d[-2][5], 2)
+
+    def test_down2d(self):
+        self.assertEqual(self.array2d[3][0], 7)
+        self.assertEqual(self.array2d[3][1], 8)
+        self.assertEqual(self.array2d[3][2], 9)
+        self.assertEqual(self.array2d[4][0], 10)
+        self.assertEqual(self.array2d[4][1], 11)
+        self.assertEqual(self.array2d[4][2], 12)
+        # self.assertEqual(self.array2d[4][-1], 7)
+        # self.assertEqual(self.array2d[4][-2], 7)
+        # self.assertEqual(self.array2d[4][-3], 7)
+        # self.assertEqual(self.array2d[4][3], 9)
+        # self.assertEqual(self.array2d[4][4], 9)
+        # self.assertEqual(self.array2d[4][5], 9)
 
     def test_is_extrapolation_for(self):
         self.assertTrue(ArrayEvenExtr.is_extrapolation_for('eVen'))

@@ -10,12 +10,23 @@ class ArrayOddExtr(ArrayExtr):
 
     def __getitem__(self, key):
         if key >= 0 and key < len(self.body):
-            return self.body[key]
+            if len(self.shape) == 1:
+                return self.body[key]
+            else:
+                return ArrayOddExtr(self.body[key])
+
         elif key < 0:
-            return self.body[abs(key) - 1]
+            if len(self.shape) == 1:
+                return self.body[abs(key) - 1]
+            else:
+                return ArrayOddExtr(self.body[abs(key) - 1])
+
         elif key >= len(self.body):
             new_pos = key - len(self.body)
             max_pos = len(self.body) - 1
             if max_pos - new_pos < 0:
                 raise IndexError(self.__class__.__name__ + ": index out of range")
-            return self.body[max_pos - new_pos]
+            if len(self.shape) == 1:
+                return self.body[max_pos - new_pos]
+            else:
+                return ArrayOddExtr(self.body[max_pos - new_pos])
