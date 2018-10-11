@@ -1,8 +1,8 @@
 from filter.ArrayExtr.base.ArrayExtr import GetArrayExtr
-#toDo убрать это, должно быть подгружено уже
 from filter.ArrayExtr.ArrayOddExtr import ArrayOddExtr
 from filter.ArrayExtr.ArrayEvenExtr import ArrayEvenExtr
 from filter.ArrayExtr.ArrayRepExtr import ArrayRepExtr
+from filter.ArrayExtr.ArrayConstantExtr import ArrayConstantExtr
 
 def _convolve1d(array, kernel, mode):
     """
@@ -53,16 +53,3 @@ def convolve1d(array, kernel, mode, axis):
     else:
         raise RuntimeError("Unsupported axis: " + str(axis))
     return result
-
-def convolve2d(array, kernel, mode, axis):
-    """
-    Двумерная линейная свертка.
-    array: дмумерный массив
-    kernel: двумерный массив
-    axis: 0 - по столбцам, 1 - по строкам
-    mode: тип продолжения
-        rep - дублирование граничных пикселей
-        odd - четное продолжение
-        even - нечетное продолжение 
-    """
-    return None
