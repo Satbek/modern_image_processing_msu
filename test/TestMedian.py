@@ -31,8 +31,5 @@ class TestMedian(unittest.TestCase):
         output = tolist(medfilt(self.array, kernel_size = 7))
         self.assertEqual(output, result)
 
-
-
-
 if __name__ == '__main__':
     unittest.main()

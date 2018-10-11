@@ -22,4 +22,3 @@ def median(array, rad):
             #print("median arr[{}],[{}]".format(i,j),median_arr)
             result[i].append(sorted(median_arr)[median_arr_len // 2])
     return result
-
