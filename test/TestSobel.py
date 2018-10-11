@@ -24,12 +24,12 @@ class TestSobel(unittest.TestCase):
 
 	def test_sobel_x_rep(self):
 		output = tolist(ndimage.sobel(self.array, axis = 1, mode = 'nearest'))
-		result = sobel(self.array, direction = 'x', mode = 'odd')
+		result = sobel(self.array, direction = 'x', mode = 'rep')
 		self.assertEqual(output, result)
 
 	def test_sobel_y_rep(self):
 		output = tolist(ndimage.sobel(self.array, axis = 0, mode = 'nearest'))
-		result = sobel(self.array, direction = 'y', mode = 'odd')
+		result = sobel(self.array, direction = 'y', mode = 'rep')
 		self.assertEqual(output, result)
 
 	def test_sobel_x_even(self):
