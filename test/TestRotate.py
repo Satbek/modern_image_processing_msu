@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('../src')
-from transform.rotate import _rot90_cw, _rot90_ccw, rot
+from transform.rotate import _rot90_cw, _rot90_ccw, rotate
 import numpy as np
 from util.test import tolist
 
@@ -48,7 +48,7 @@ class TestRotate(unittest.TestCase):
         for i, num in enumerate([-1,-2,-3]):
             output_arr = tolist(np.rot90(input_arr, num))
             #degrees[i] == num * (-90)
-        self.assertEqual(output_arr, rot(input_arr, degrees[i]))
+        self.assertEqual(output_arr, rotate(input_arr, degrees[i]))
 
     def test_rot90_negative_degree(self):
         degrees = [-90, -180, -270]
@@ -56,7 +56,7 @@ class TestRotate(unittest.TestCase):
         for i, num in enumerate([1,2,3]):
             output_arr = tolist(np.rot90(input_arr, num))
             #degrees[i] == num *(-90)
-        self.assertEqual(output_arr, rot(input_arr, degrees[i]))
+        self.assertEqual(output_arr, rotate(input_arr, degrees[i]))
 
     def test_empty_array(self):
         input_arr = []

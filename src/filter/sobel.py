@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 from util.math.convolution import convolve1d
-def sobel(array, direction, mode):
+def sobel(array, mode, direction):
     """
     Фильтр собеля,применямый к двумерному массиву array.
     array: двумерный массив, для которого вычисляются градиенты

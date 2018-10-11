@@ -34,7 +34,7 @@ def _rot90_ccw(array):
         result.append(new_row)
     return result
 
-def rot(array, degree):
+def rotate(array, degree):
     """
     Функция возвращает,повернутый на заданное кол-во грудсов, двумерный массив
     array: двумерный массив
