@@ -2,11 +2,14 @@ class ArrayExtr:
     """
     Базовый класс для экстраполяции массива.
     """
-    def __init__(self, array):
+    def __init__(self, array, by_ref = False):
         """
         array: экстраполируемый массив
         """
-        self._body = array[:]
+        if by_ref:
+            self._body = array
+        else:
+            self._body = array[:]
 
     @property
     def shape(self):

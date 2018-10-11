@@ -10,7 +10,7 @@ def median(array, rad):
     result: двумерный массив
     """
     array = GetArrayExtr(array,'constant', 0)
-    row_len, col_len = len(array), len(array[0])
+    row_len, col_len, median_arr_len = len(array), len(array[0]), (2 * rad + 1) * (2 * rad + 1)
     result = []
     for i in range(row_len):
         result.append([])
@@ -19,8 +19,7 @@ def median(array, rad):
             for l in range(i - rad, i + rad + 1):
                 for m in range(j - rad, j + rad + 1):
                     median_arr.append(array[l][m])
-            median_arr[:] = sorted(median_arr)
             #print("median arr[{}],[{}]".format(i,j),median_arr)
-            result[i].append(median_arr[len(median_arr) // 2])
+            result[i].append(sorted(median_arr)[median_arr_len // 2])
     return result
 
