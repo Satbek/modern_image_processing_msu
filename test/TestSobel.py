@@ -11,6 +11,7 @@ class TestSobel(unittest.TestCase):
     """
     def setUp(self):
         self.array = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+        self.array_big_values = [[255, 255, 255, 255],[255, 255, 255, 255],[2255, 255, 255, 255]]
 
     def test_sobel_x_odd(self):
         output = tolist(ndimage.sobel(self.array, axis = 1, mode = 'reflect'))
@@ -40,4 +41,9 @@ class TestSobel(unittest.TestCase):
     def test_sobel_y_even(self):
         output = [[16, 16, 16, 16],[32, 32, 32, 32],[16, 16, 16, 16]]
         result = sobel(self.array, direction = 'y', mode = 'even')
+        self.assertEqual(output, result)
+
+    def test_sobel_y_big_values(self):
+        output = tolist(ndimage.sobel(self.array_big_values, axis = 1, mode = 'reflect')) 
+        result = sobel(self.array_big_values, direction = 'x', mode = 'odd')
         self.assertEqual(output, result)
