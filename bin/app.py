@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../src")
 import util.data.bmp as bmp
-from transform import mirror, rotate
+from transform import mirror, rotate, normalize
 from filter import sobel, median, gauss, gradient
 
 def proccess_image(image, func, *args, **kwargs):
@@ -29,9 +29,8 @@ def mirror_command(*args, **kwargs):
 
 def sobel_command(*args, **kwargs):
     res = sobel.sobel(*args, **kwargs)
-    for i in range(len(res)):
-        for j in range(len(res[0])):
-            res[i][j] += 128
+    res = normalize.shift(res, 128)
+    res = normalize.suppress_ejection(res)
     return res
 
 def median_command(array, rad):
@@ -45,9 +44,7 @@ def gauss_command(array, mode, sigma):
 def gradient_command(array, mode, sigma):
     sigma = float(sigma)
     res = gradient.gradient(array, mode, sigma)
-    for i in range(len(res)):
-        for j in range(len(res[0])):
-            res[i][j] = min(max(res[i][j], 0), 255)
+    res = normalize.suppress_ejection(res)
     return res
 
 def main(): 
