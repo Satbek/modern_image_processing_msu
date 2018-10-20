@@ -1,5 +1,6 @@
 import math
 from util.math.convolution import convolve1d
+from filter.gauss import gauss_filter1d
 
 def _gauss_derivative(x, sigma):
     return  (-2 * x / sigma ** 2) * math.exp(-0.5 * (x**2) / sigma**2) / (math.sqrt(2 * math.pi * sigma ** 2))
@@ -9,12 +10,16 @@ def _gauss_derivative_filter(sigma):
     return [_gauss_derivative(i, sigma) for i in range(-3 * sigma, 3 * sigma + 1)]
 
 def _proccess_x(array, mode, sigma):
-    kernel = _gauss_derivative_filter(sigma)
-    return convolve1d(array, kernel, mode, axis = 1)
+    derivative_kernel = _gauss_derivative_filter(sigma)
+    gauss_kernel = gauss_filter1d(sigma)
+    tmp = convolve1d(array, derivative_kernel, mode, axis = 1)
+    return convolve1d(tmp, gauss_kernel, mode, axis = 0)
 
 def _proccess_y(array, mode, sigma):
-    kernel = _gauss_derivative_filter(sigma)
-    return convolve1d(array, kernel, mode, axis = 0)
+    derivative_kernel = _gauss_derivative_filter(sigma)
+    gauss_kernel = gauss_filter1d(sigma)
+    tmp = convolve1d(array, derivative_kernel, mode, axis = 0)
+    return convolve1d(tmp, gauss_kernel, mode, axis = 1)
 
 def gradient(array, mode, sigma):
     """
